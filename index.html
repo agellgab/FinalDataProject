@@ -1,0 +1,222 @@
+<html>
+<head>
+	<title>World Leaders' Salaries</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	<script src = "jquery-3.1.1.min.js"></script>
+	<script src = "papaparse.min.js"></script>
+	<script src = "isotope.pkgd.min.js"></script>
+	<script src = "script.js"></script>
+	<script src = "data.js"></script>
+	<script src = "bootstrap.min.js"></script>
+</head>
+<body onload="init()">
+	
+	 <h1>Salaries of the World</h1>
+			
+	
+	<hr>
+	
+	<button class="filter btn btn-default" id="WLvsWL">World Leader vs World Leader</button>
+	<button class="filter btn btn-default" id="WLvsAN">World Leader vs Average National</button>
+	<button class="filter btn btn-default" id="WLvsON">World Leader vs Other nation</button>
+	<button class="filter btn btn-default" id="WLvsY">World Leader vs You</button>
+	<button class="filter btn btn-default" id="charts">Charts</button>
+	
+	<hr>
+
+
+	<div id = "FirstPage" class = "center">
+		<h2 class = "start">Have you ever wondered how much money a president or a prime minister makes?</h2>
+		<h3 class= "start">Check it out now! You have four options to compare the world leaders' salary with other interesting data!</h3>
+
+		<p>World Leader vs World Leader lets you compare the salaries of world leader amongst them.</p>
+		<p>World Leader vs Average National lets you compare the salary of a world leader with the national average wage of his/her country.</p>
+		<p>World Leader vs Other nation lets you compare the salary of a world leader with the average national wage of another country.</p>
+		<p>World Leader vs You lets you stand against the world leaders' salaries. Will you beat them?</p>
+		<p>Once you're done, check out the general overview. Wanna find out who's the world leader that brings the biggest bacon home?</p>
+
+	</div>
+
+	<div id = "WLvsWLcontent" class = "center">
+
+		<select id = "WLselector1"></select>
+
+		<button class="filter btn btn-default" id="comparebtn1">Compare</button>
+
+		<select id = "WLselector2"></select>
+
+		<div id = "WL1" class = "col-sm-12 col-sm-6">
+
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>Name: <span class = "WLname"></span></p>
+			<p>Position: <span class = "WLposition"></span></p>
+			<p>Birth: <span class = "WLbirth"></span></p>
+			<p>Annual: <span class = "WLannual"></span></p>
+			<p>Monthly: <span class = "WLmonthly"></span></p>
+			<p>Weekly: <span class = "WLweekly"></span></p>
+			<p>Daily: <span class = "WLdaily"></span></p>
+			<img class = "WLimage"></img>
+
+		</div>
+
+
+		<div id = "WL2" class = "col-sm-12 col-sm-6">
+			
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>Name: <span class = "WLname"></span></p>
+			<p>Position: <span class = "WLposition"></span></p>
+			<p>Birth: <span class = "WLbirth"></span></p>
+			<p>Annual: <span class = "WLannual"></span></p>
+			<p>Monthly: <span class = "WLmonthly"></span></p>
+			<p>Weekly: <span class = "WLweekly"></span></p>
+			<p>Daily: <span class = "WLdaily"></span></p>
+			<img class = "WLimage"></img>
+
+		</div>
+		<div id = "WLvsWLresults" class = "col-sm-12 result">
+			
+			<p><span class = "WL1Span"></span> earns <span class = "WLvsWLRatioSpan"></span> times more than <span class = "WL2Span"></span></p>
+
+		</div>
+	</div>
+
+	<div id = "WLvsANcontent" class = "center">
+		<select id = "WLselector3"></select>
+
+		<button class="filter btn btn-default" id="comparebtn2">Compare</button>
+
+		<!--<select id = "AVNatSelector"></select>-->
+
+		<div id = "WL3" class = "col-sm-12 col-sm-6">
+
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>Name: <span class = "WLname"></span></p>
+			<p>Position: <span class = "WLposition"></span></p>
+			<p>Birth: <span class = "WLbirth"></span></p>
+			<p>Annual: <span class = "WLannual"></span></p>
+			<p>Monthly: <span class = "WLmonthly"></span></p>
+			<p>Weekly: <span class = "WLweekly"></span></p>
+			<p>Daily: <span class = "WLdaily"></span></p>
+			<img class = "WLimage"></img>
+
+		</div>
+
+		<div id = "AVN" class = "col-sm-12 col-sm-6">
+			
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>National leader: <span class = "WLname"></span></p>
+			<p>Average National Wage: <span class = "AVNatWage"></span></p>
+			<p>Gini coefficient: <span class = "GiniVal"></span></p>
+			<p>Year of Gini's measurement: <span class = "GiniYearVal"></span></p>
+			<p>National leader's wage divided by the average national wage: <span class = "WLAVNalVal"></span></p>
+
+		</div>
+
+		<div id = "WLvsANresults">
+			
+		<p><span class = "WL3Span"></span> earns <span class = "WLvsANRatioSpan"></span> times more than the average national wage of his/her own country (USD$<span class = "ANSpan"></span>)</p>
+
+		</div>
+
+	</div>
+	<div id = "WLvsONcontent" class = "center">
+		
+		<select id = "WLselector4"></select>
+
+		<button class="filter btn btn-default" id="comparebtn3">Compare</button>
+
+		<select id = "AVOtherSelector"></select>
+
+		<div id = "WL4" class = "col-sm-12 col-sm-6">
+
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>Name: <span class = "WLname"></span></p>
+			<p>Position: <span class = "WLposition"></span></p>
+			<p>Birth: <span class = "WLbirth"></span></p>
+			<p>Annual: <span class = "WLannual"></span></p>
+			<p>Monthly: <span class = "WLmonthly"></span></p>
+			<p>Weekly: <span class = "WLweekly"></span></p>
+			<p>Daily: <span class = "WLdaily"></span></p>
+			<img class = "WLimage"></img>
+
+		</div>
+
+		<div id = "AON" class = "col-sm-12 col-sm-6">
+			
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>National leader: <span class = "WLname"></span></p>
+			<p>Average National Wage: <span class = "AVNatWage"></span></p>
+			<p>Gini coefficient: <span class = "GiniVal"></span></p>
+			<p>Year of Gini's measurement: <span class = "GiniYearVal"></span></p>
+			<p>National leader's wage divided by the average national wage: <span class = "WLAVNalVal"></span></p>
+
+		</div>
+
+		<div id = "WLvsONresults">
+			
+			<p><span class = "WL4Span"></span> earns <span class = "WLvsONRatioSpan"></span> times more than the average national wage of <span class = "ONCSpan"></span> (USD$<span class = "ONSpan"></span>)</p>
+
+		</div>
+
+	</div>
+
+	<div id = "WLvsYcontent" class = "center">
+		<p>Enter your annual salary to find out your position in the World Leaders' salaries ranking (USD):  <input id="userSalary" type="number" step="100"></input></p>
+		
+		<button class="filter btn btn-default" id="comparebtn4">Compare</button>
+
+		<select id = "WLselector5"></select>
+
+		<div id = "WL5" class = "col-sm-12 col-sm-6">
+
+			<p>Country: <span class = "WLcountry"></span></p>
+			<p>Name: <span class = "WLname"></span></p>
+			<p>Position: <span class = "WLposition"></span></p>
+			<p>Birth: <span class = "WLbirth"></span></p>
+			<p>Annual: <span class = "WLannual"></span></p>
+			<p>Monthly: <span class = "WLmonthly"></span></p>
+			<p>Weekly: <span class = "WLweekly"></span></p>
+			<p>Daily: <span class = "WLdaily"></span></p>
+			<img class = "WLimage"></img>
+
+		</div>
+
+		<div id = "YOU" class = "col-sm-12 col-sm-6">
+			<p>Your salary: <span class="youSalary"></span></p>
+		</div>
+
+		<div id = "WLvsYresults">
+			<p><span class = "WLname"></span> earns <span class = "youSalaryRatio"></span> times more than you!</p>
+		</div>
+
+	</div>
+	<div id = "chartscontent" class = "container center">
+		<div class = "row">
+			<div id = "chartText1" class = "col-sm-12">
+			
+				<h3>The econonmies with the highest world leaders' salaries over its compatriots</h3>
+				<p>The chart below shows you who are the presidents who earn the most if compared to the average national wage of his/her own country in on axis. The president of Azerbaijan earns 31 times more than the national average wage of that country, for example.</p>
+				<p>That same chart shows you what is the Gini coefficient of the countries in the other axis. The Gini coefficient is an index that measures the distribution of wealth in a country. The higher it approaches to 1, the higher the inequality in that country. South Africa has one of the highest Gini ratios, for example.</p>
+				<p> Scroll around the scatterplot, to see who are the world leaders that go big when it comes to salaries over their own nationals. Can you make any correlations between the distritubion of wealth in a country and the ammount of money world leaders make?</p>
+
+				<div id="myScatterChart"></div>
+			</div>
+
+			<div id = "chartText2" class = "col-sm-12">
+				<h3>The world leaders with the highest salaries</h3>
+				<p>The chart below shows you how much money are world leaders making per week. Do you earn more than most of them?</p>
+				<p>Scroll down to see who's the world leader with the highest salary in the world. Is it Putin?</p>
+				<div id="myColumnChart"></div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+	
+</body>
+</html>
